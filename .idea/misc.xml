@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Genaro/Documents/TUDS/Moviles/AndroidStudioProjects/Tp3_RecyclerView_Moviles_Farias/app/src/main/res/drawable/ic_launcher_background.xml" value="0.10185185185185185" />
+        <entry key="..\:/Users/Genaro/Documents/TUDS/Moviles/AndroidStudioProjects/Tp3_RecyclerView_Moviles_Farias/app/src/main/res/layout/activity_main.xml" value="0.2542991141219385" />
+        <entry key="..\:/Users/Genaro/Documents/TUDS/Moviles/AndroidStudioProjects/Tp3_RecyclerView_Moviles_Farias/app/src/main/res/layout/detalle_pelicula.xml" value="0.264" />
         <entry key="..\:/Users/Genaro/Documents/TUDS/Moviles/AndroidStudioProjects/Tp3_RecyclerView_Moviles_Farias/app/src/main/res/layout/lista_peliculas_fila.xml" value="0.4" />
+        <entry key="..\:/Users/Genaro/Documents/TUDS/Moviles/AndroidStudioProjects/Tp3_RecyclerView_Moviles_Farias/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10185185185185185" />
       </map>
     </option>
   </component>

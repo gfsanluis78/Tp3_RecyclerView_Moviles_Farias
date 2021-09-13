@@ -1,6 +1,7 @@
 package com.farias.tp3_recyclerview_moviles_farias;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,35 +13,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapterPeliculas.PeliculasViewHolder>{
 
-    final private ListItemClick miOnclickListener;
-    private List<Pelicula> lista;
+    private final Context context;
+//    final private ListItemClick miOnclickListener;
+    private final List<Pelicula> lista;
+    LayoutInflater layoutInflater;
 
-    public RecyclerAdapterPeliculas(List<Pelicula> objetos ,ListItemClick listener) {
-        miOnclickListener = listener;
-        lista = objetos;
-    }
+    public RecyclerAdapterPeliculas(Context context,List<Pelicula> objetos) {
+
+        this.layoutInflater = LayoutInflater.from(context);
+        this.context = context;
+        this.lista = objetos;
+            }
 
     public interface  ListItemClick{
         void onListItemClick(int clickedItem);
     }
 
-
-
     @NonNull
     @Override
     public PeliculasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        Context mycontext  = parent.getContext();
         int layoutIdParaListItem = R.layout.lista_peliculas_fila;
-        LayoutInflater inflater = LayoutInflater.from(mycontext);
         boolean attachToParentRapido = false;
 
-        View view = inflater.inflate(layoutIdParaListItem,parent,attachToParentRapido);
+        View view = layoutInflater.inflate(layoutIdParaListItem,parent,attachToParentRapido);
 
         PeliculasViewHolder viewHolder = new PeliculasViewHolder(view);
 
@@ -49,13 +49,18 @@ public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapt
 
     @Override
     public void onBindViewHolder(@NonNull PeliculasViewHolder holder, int position) {
-        holder.titulo.setText(lista.get(position).getTitulo());
-        holder.resenia.setText(lista.get(position).getResenia());
-        holder.IV_foto.setImageResource(lista.get(position).getImagenCartelera());
+        Pelicula pelicula = lista.get(position);
+        Log.d("mensajeViewHolder", pelicula.getId()+" o " + position);
+        holder.titulo.setText(pelicula.getTitulo());
+        holder.resenia.setText(pelicula.getResenia());
+        holder.IV_foto.setImageResource(pelicula.getImagenCartelera());
         holder.BT_detalles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("mensaje","llego ");
+                Intent intent = new Intent(context, DetallePelicula.class);
+                intent.putExtra("id",pelicula.getId());
+                Log.d("mensajeViewHolder",pelicula.getId()+"");
+                context.startActivity(intent);
             }
         });
 
@@ -85,17 +90,11 @@ public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapt
             itemView.setOnClickListener(this);
         }
 
-        void bind (int listaIndex){
-            titulo.setText(String.valueOf(listaIndex));
-
-
-        }
-
         @Override
         public void onClick(View view) {
-            int clickedItem = getAdapterPosition();
-
-            miOnclickListener.onListItemClick(clickedItem);
+//            int clickedItem = getAdapterPosition();
+//
+//            miOnclickListener.onListItemClick(clickedItem);
         }
     }
 }

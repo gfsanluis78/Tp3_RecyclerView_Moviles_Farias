@@ -10,8 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tp3_RecyclerView_Moviles_Farias">
         <activity
+            android:name=".DetallePelicula"
+            android:exported="true"
+            android:label="Detalles"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Mi app de Peliculas">>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
