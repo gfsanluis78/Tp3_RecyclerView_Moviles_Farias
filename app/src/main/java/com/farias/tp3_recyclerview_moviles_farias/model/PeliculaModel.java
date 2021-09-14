@@ -1,6 +1,8 @@
 package com.farias.tp3_recyclerview_moviles_farias.model;
 
-public class PeliculaModel {
+import java.io.Serializable;
+
+public class PeliculaModel implements Serializable {
 
     private int id;
     private String titulo;

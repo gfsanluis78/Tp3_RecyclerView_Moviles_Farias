@@ -2,6 +2,7 @@ package com.farias.tp3_recyclerview_moviles_farias.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,9 +44,7 @@ public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapt
 
         int layoutIdParaListItem = R.layout.lista_peliculas_fila;
         boolean attachToParentRapido = false;
-
         View view = layoutInflater.inflate(layoutIdParaListItem,parent,attachToParentRapido);
-
         PeliculasViewHolder viewHolder = new PeliculasViewHolder(view);
 
         return viewHolder;
@@ -61,8 +60,10 @@ public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapt
         holder.BT_detalles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetallePelicula.class);
-                intent.putExtra("id",pelicula.getId());
+                Intent intent = new Intent(context, DetallePelicula.class);     // Instancio el intent
+                Bundle bundle = new Bundle();                                   // Instancio el bundle a enviar
+                bundle.putSerializable("pelicula", pelicula);                   // Meto la pelicula en el bundle
+                intent.putExtra("bundle",bundle);                         // Meto el bundle clave budle en el extra
                 Log.d("mensajeViewHolder",pelicula.getId()+"");
                 context.startActivity(intent);
             }
