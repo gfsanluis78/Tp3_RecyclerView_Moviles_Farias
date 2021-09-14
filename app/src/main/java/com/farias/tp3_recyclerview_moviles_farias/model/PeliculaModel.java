@@ -1,6 +1,7 @@
-package com.farias.tp3_recyclerview_moviles_farias;
+package com.farias.tp3_recyclerview_moviles_farias.model;
 
-public class Pelicula {
+public class PeliculaModel {
+
     private int id;
     private String titulo;
     private int imagenCartelera;
@@ -8,7 +9,7 @@ public class Pelicula {
     private String actoresPrincipales;
     private String director;
 
-    public Pelicula(int id,String titulo, int imagenCartelera, String resenia, String actoresPrincipales, String director) {
+    public PeliculaModel(int id, String titulo, int imagenCartelera, String resenia, String actoresPrincipales, String director) {
         this.id = id;
         this.titulo = titulo;
         this.imagenCartelera = imagenCartelera;

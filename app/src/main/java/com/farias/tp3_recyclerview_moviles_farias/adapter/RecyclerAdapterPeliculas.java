@@ -1,4 +1,4 @@
-package com.farias.tp3_recyclerview_moviles_farias;
+package com.farias.tp3_recyclerview_moviles_farias.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,16 +13,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.farias.tp3_recyclerview_moviles_farias.DetallePelicula;
+import com.farias.tp3_recyclerview_moviles_farias.R;
+import com.farias.tp3_recyclerview_moviles_farias.model.PeliculaModel;
+
 import java.util.List;
 
 public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapterPeliculas.PeliculasViewHolder>{
 
     private final Context context;
 //    final private ListItemClick miOnclickListener;
-    private final List<Pelicula> lista;
+    private final List<PeliculaModel> lista;
     LayoutInflater layoutInflater;
 
-    public RecyclerAdapterPeliculas(Context context,List<Pelicula> objetos) {
+    public RecyclerAdapterPeliculas(Context context,List<PeliculaModel> objetos) {
 
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
@@ -49,7 +53,7 @@ public class RecyclerAdapterPeliculas extends RecyclerView.Adapter<RecyclerAdapt
 
     @Override
     public void onBindViewHolder(@NonNull PeliculasViewHolder holder, int position) {
-        Pelicula pelicula = lista.get(position);
+        PeliculaModel pelicula = lista.get(position);
         Log.d("mensajeViewHolder", pelicula.getId()+" o " + position);
         holder.titulo.setText(pelicula.getTitulo());
         holder.resenia.setText(pelicula.getResenia());

@@ -1,6 +1,7 @@
 package com.farias.tp3_recyclerview_moviles_farias;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,16 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.farias.tp3_recyclerview_moviles_farias.adapter.RecyclerAdapterPeliculas;
+import com.farias.tp3_recyclerview_moviles_farias.databinding.ActivityMainBinding;
+import com.farias.tp3_recyclerview_moviles_farias.model.PeliculaModel;
+import com.farias.tp3_recyclerview_moviles_farias.viewmodel.PeliculasListaViewModel;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
 
     private RecyclerView mRVPeliculas;
-    private RecyclerAdapterPeliculas mAdapter;
-    private PeliculaViewModel peliculaViewModel;
 
-    private ArrayList<Pelicula> lista = new ArrayList<>();
-    private Toast miToast;
+//    private final ArrayList<PeliculaModel> lista = new ArrayList<>();
 
 
     @Override
@@ -25,10 +28,6 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Instancio un nuevo view model del tipo pelicula
-        peliculaViewModel = new PeliculaViewModel();
-
-        // llamo al RecyclerView peliculas
         mRVPeliculas = findViewById(R.id.RVpeliculas);
 
         // Instancio el linear layout que va a utilizar el Recycler View
@@ -36,9 +35,14 @@ public class MainActivity extends AppCompatActivity{
         mRVPeliculas.setLayoutManager(linearLayoutManager);
         mRVPeliculas.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        // Instancio un adaptador y se lo seteo al RecyclerView
-        RecyclerAdapterPeliculas mAdapter = new RecyclerAdapterPeliculas(this,peliculaViewModel.getLista());
-        mRVPeliculas.setAdapter(mAdapter);
+        PeliculasListaViewModel model = new ViewModelProvider(this).get(PeliculasListaViewModel.class);
+        model.getPeliculas().observe(this, peliculas ->{
+
+            // Instancio un adaptador y se lo seteo al RecyclerView
+            RecyclerAdapterPeliculas mAdapter = new RecyclerAdapterPeliculas(this, peliculas);
+            mRVPeliculas.setAdapter(mAdapter);
+
+        });
     }
 
     @Override
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void bienvenido(){
         String  mensajeToast = "Bienvenido";
-        miToast = Toast.makeText(this, mensajeToast, Toast.LENGTH_SHORT);
+        Toast miToast = Toast.makeText(this, mensajeToast, Toast.LENGTH_SHORT);
         miToast.show();
 
     }

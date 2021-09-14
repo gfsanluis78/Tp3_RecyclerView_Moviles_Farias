@@ -9,9 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.farias.tp3_recyclerview_moviles_farias.model.PeliculaModel;
+import com.farias.tp3_recyclerview_moviles_farias.viewmodel.PeliculasListaViewModel;
+
 public class DetallePelicula extends AppCompatActivity {
 
-    private PeliculaViewModel peliculaViewModel;
+    private PeliculasListaViewModel peliculasListaViewModel;
     private TextView TV_titulo,TV_resenia,TV_actores,TV_director;
     private ImageView foto;
     private int idDetalle;
@@ -23,7 +26,7 @@ public class DetallePelicula extends AppCompatActivity {
         setContentView(R.layout.detalle_pelicula);
         Intent intent = getIntent();
 
-        peliculaViewModel = new PeliculaViewModel();
+        peliculasListaViewModel = new PeliculasListaViewModel();
         idDetalle = intent.getExtras().getInt("id");
         Log.d("mensajeOnCreate",idDetalle+"");
         traerVistas();
@@ -44,7 +47,7 @@ public class DetallePelicula extends AppCompatActivity {
         private void setearVistaDetalle(){
         // las seteo
 
-            Pelicula p = peliculaViewModel.getPeliculaXId(idDetalle);
+            PeliculaModel p = peliculasListaViewModel.getPeliculaXId(idDetalle);
             Log.d("mensajes", p.getTitulo()+" "+p.getActoresPrincipales()+" " +p.getDirector());
 
             TV_titulo.setText(p.getTitulo());
